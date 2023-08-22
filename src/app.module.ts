@@ -37,7 +37,5 @@ import { join } from 'path';
       },
     }),
   ],
-  controllers: [],
-  providers: [],
 })
 export class AppModule {}
