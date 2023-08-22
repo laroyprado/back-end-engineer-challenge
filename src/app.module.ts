@@ -10,6 +10,7 @@ import {
   URLResolver,
 } from 'graphql-scalars';
 import { join } from 'path';
+import { context } from './config/context';
 
 @Module({
   imports: [
@@ -35,6 +36,8 @@ import { join } from 'path';
           JWT: 'string',
         },
       },
+      csrfPrevention: true,
+      context,
     }),
   ],
 })
