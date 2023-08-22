@@ -1,0 +1,31 @@
+type User {
+  id        String   @id @default(uuid())
+    firstName String   @db.VarChar(50)
+    lastName  String   @db.VarChar(50)
+    email     String   @unique @db.VarChar(127)
+    password  String
+    avatarURL String?
+    company   String   @db.VarChar(127)
+    createdAt DateTime @default(now())
+
+}
+
+input CreateUserInput {
+  # Example field (placeholder)
+  exampleField: Int
+}
+
+input UpdateUserInput {
+  id: Int!
+}
+
+type Query {
+  users: [User]!
+  user(id: Int!): User
+}
+
+type Mutation {
+  createUser(createUserInput: CreateUserInput!): User!
+  updateUser(updateUserInput: UpdateUserInput!): User!
+  removeUser(id: Int!): User
+}

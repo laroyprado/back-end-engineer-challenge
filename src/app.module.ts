@@ -11,6 +11,7 @@ import {
 } from 'graphql-scalars';
 import { join } from 'path';
 import { context } from './config/context';
+import { UsersModule } from './modules/users/users.module';
 
 @Module({
   imports: [
@@ -39,6 +40,7 @@ import { context } from './config/context';
       csrfPrevention: true,
       context,
     }),
+    UsersModule,
   ],
 })
 export class AppModule {}
