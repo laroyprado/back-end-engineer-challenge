@@ -1,12 +1,15 @@
 import { User } from 'src/graphql';
 import { CreateUserDto } from '../../dto/create-user.dto';
 import { UpdateUserDto } from '../../dto/update-user.dto';
-import { UserRepository } from '../users.repository';
+import { UsersRepository } from '../users.repository';
 import { Injectable } from '@nestjs/common';
 import { UUID } from 'node:crypto';
+import { PrismaService } from 'src/db/prisma.service';
 
 @Injectable()
-export class UsersPrismaRepository implements UserRepository {
+export class UsersPrismaRepository implements UsersRepository {
+  constructor(private readonly prismaService: PrismaService) {}
+
   async create(data: CreateUserDto): Promise<User> {
     throw new Error('Method not implemented.');
   }

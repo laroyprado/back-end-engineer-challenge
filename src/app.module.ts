@@ -10,7 +10,6 @@ import {
   URLResolver,
 } from 'graphql-scalars';
 import { join } from 'path';
-import { context } from './config/context';
 import { UsersModule } from './modules/users/users.module';
 
 @Module({
@@ -38,7 +37,6 @@ import { UsersModule } from './modules/users/users.module';
         },
       },
       csrfPrevention: true,
-      context,
     }),
     UsersModule,
   ],
