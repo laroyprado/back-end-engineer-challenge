@@ -1,31 +1,46 @@
-type User {
-  id        String   @id @default(uuid())
-    firstName String   @db.VarChar(50)
-    lastName  String   @db.VarChar(50)
-    email     String   @unique @db.VarChar(127)
-    password  String
-    avatarURL String?
-    company   String   @db.VarChar(127)
-    createdAt DateTime @default(now())
+scalar DateTime
+scalar EmailAddress
+scalar UUID
+scalar URL
+scalar JWT
 
+type User {
+  id: UUID!   
+  firstName: String!  
+  lastName: String!  
+  fullName: String
+  email: EmailAddress!   
+  password: String!
+  avatarURL: URL
+  company: String!   
+  createdAt: DateTime!
 }
 
-input CreateUserInput {
-  # Example field (placeholder)
-  exampleField: Int
+input CreateUserInput { 
+  firstName: String!  
+  lastName: String!  
+  email: EmailAddress!   
+  password: String!
+  avatarURL: URL
+  company: String! 
 }
 
 input UpdateUserInput {
-  id: Int!
+  firstName: String  
+  lastName: String  
+  email: EmailAddress   
+  password: String
+  avatarURL: URL
+  company: String 
 }
 
 type Query {
   users: [User]!
-  user(id: Int!): User
+  user(id: UUID!): User
 }
 
 type Mutation {
   createUser(createUserInput: CreateUserInput!): User!
-  updateUser(updateUserInput: UpdateUserInput!): User!
-  removeUser(id: Int!): User
+  updateUser(id: UUID!, updateUserInput: UpdateUserInput!): User!
+  removeUser(id: UUID!): User
 }
