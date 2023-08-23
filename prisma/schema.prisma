@@ -26,8 +26,8 @@ model User {
 }
 
 model Company {
-    id      String @id @default(uuid())
-    name    String @db.VarChar(127)
+    id    String @id @default(uuid())
+    name  String @unique @db.VarChar(127)
     users User[]
 
     @@map("companies")
@@ -54,7 +54,7 @@ model Transaction {
 
 model Category {
     id           String        @id @default(uuid())
-    name         String        @db.VarChar(30)
+    name         String        @unique @db.VarChar(30)
     transactions Transaction[]
 
     @@map("categories")
