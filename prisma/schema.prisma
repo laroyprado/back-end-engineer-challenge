@@ -11,14 +11,51 @@ datasource db {
 }
 
 model User {
-    id        String   @id @default(uuid())
-    firstName String   @db.VarChar(50)
-    lastName  String   @db.VarChar(50)
-    email     String   @unique @db.VarChar(127)
-    password  String
-    avatarURL String?
-    company   String   @db.VarChar(127)
-    createdAt DateTime @default(now())
+    id           String        @id @default(uuid())
+    firstName    String        @db.VarChar(50)
+    lastName     String        @db.VarChar(50)
+    email        String        @unique @db.VarChar(127)
+    password     String
+    avatarURL    String?
+    company      Company       @relation(fields: [companyId], references: [id])
+    companyId    String
+    createdAt    DateTime      @default(now())
+    transactions Transaction[]
 
     @@map("users")
+}
+
+model Company {
+    id      String @id @default(uuid())
+    name    String @db.VarChar(127)
+    users User[]
+
+    @@map("companies")
+}
+
+enum TransactionType {
+    CREDIT
+    DEBIT
+}
+
+model Transaction {
+    id         String          @id @default(uuid())
+    type       TransactionType
+    title      String          @db.VarChar(50)
+    value      Decimal         @db.Decimal(12, 2)
+    createdAt  DateTime        @default(now())
+    category   Category        @relation(fields: [categoryId], references: [id])
+    categoryId String
+    user       User            @relation(fields: [userId], references: [id], onDelete: Cascade)
+    userId     String
+
+    @@map("transactions")
+}
+
+model Category {
+    id           String        @id @default(uuid())
+    name         String        @db.VarChar(30)
+    transactions Transaction[]
+
+    @@map("categories")
 }
