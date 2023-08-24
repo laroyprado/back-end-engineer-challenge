@@ -11,6 +11,7 @@ import {
 } from 'graphql-scalars';
 import { join } from 'path';
 import { UsersModule } from './modules/users/users.module';
+import { formatError } from './config/format.error';
 
 @Module({
   imports: [
@@ -37,6 +38,7 @@ import { UsersModule } from './modules/users/users.module';
         },
       },
       csrfPrevention: true,
+      formatError,
     }),
     UsersModule,
   ],
