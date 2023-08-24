@@ -12,6 +12,7 @@ import {
 import { join } from 'path';
 import { UsersModule } from './modules/users/users.module';
 import { formatError } from './config/format.error';
+import { AuthModule } from './modules/auth/auth.module';
 
 @Module({
   imports: [
@@ -41,6 +42,7 @@ import { formatError } from './config/format.error';
       formatError,
     }),
     UsersModule,
+    AuthModule,
   ],
 })
 export class AppModule {}
