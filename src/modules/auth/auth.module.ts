@@ -6,6 +6,7 @@ import { UsersModule } from '../users/users.module';
 import { PassportModule } from '@nestjs/passport';
 import { LocalStrategy } from './strategies/local.strategy';
 import { JwtStrategy } from './strategies/jwt.strategy';
+import { PrismaService } from 'src/db/prisma.service';
 
 @Module({
   imports: [
@@ -16,6 +17,12 @@ import { JwtStrategy } from './strategies/jwt.strategy';
       signOptions: { expiresIn: process.env.EXPIRES_IN },
     }),
   ],
-  providers: [AuthResolver, AuthService, LocalStrategy, JwtStrategy],
+  providers: [
+    AuthResolver,
+    AuthService,
+    LocalStrategy,
+    JwtStrategy,
+    PrismaService,
+  ],
 })
 export class AuthModule {}
