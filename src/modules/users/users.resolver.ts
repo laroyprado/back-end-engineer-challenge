@@ -3,6 +3,7 @@ import { UsersService } from './users.service';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
 import { UUID } from 'node:crypto';
+import { User } from 'src/graphql';
 
 @Resolver('User')
 export class UsersResolver {
@@ -19,7 +20,8 @@ export class UsersResolver {
   }
 
   @Query('user')
-  findOne(@Args('id') id: UUID) {
+  findOne(@Args('id') id: UUID): Promise<User> {
+    //Tirar duvida depois sobre qual user usar
     return this.usersService.findOne(id);
   }
 

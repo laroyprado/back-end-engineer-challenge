@@ -32,10 +32,15 @@ export interface User {
     lastName: string;
     fullName?: Nullable<string>;
     email: EmailAddress;
-    password: string;
     avatarURL?: Nullable<URL>;
-    company: string;
+    company?: Nullable<Company>;
     createdAt: DateTime;
+}
+
+export interface Company {
+    id: UUID;
+    name: string;
+    users?: Nullable<Nullable<User>[]>;
 }
 
 export interface IQuery {

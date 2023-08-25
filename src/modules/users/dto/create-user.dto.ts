@@ -8,7 +8,7 @@ import {
 } from 'class-validator';
 import { CreateUserInput } from '../../../graphql';
 import { Transform } from 'class-transformer';
-import { hashSync } from 'bcrypt';
+import { hashSync } from 'bcryptjs';
 
 export class CreateUserDto implements CreateUserInput {
   @IsString()
@@ -39,6 +39,5 @@ export class CreateUserDto implements CreateUserInput {
 
   @IsString()
   @IsNotEmpty()
-  @MaxLength(127)
   company: string;
 }

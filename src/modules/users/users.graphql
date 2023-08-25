@@ -6,32 +6,37 @@ scalar JWT
 
 type User {
   id: UUID!   
-  firstName: String!  
-  lastName: String!  
+  firstName: String!
+  lastName: String!
   fullName: String
-  email: EmailAddress!   
-  password: String!
+  email: EmailAddress!
   avatarURL: URL
-  company: String!   
+  company: Company
   createdAt: DateTime!
 }
 
+type Company {
+	id: UUID!
+	name: String!
+	users: [User]
+}
+
 input CreateUserInput { 
-  firstName: String!  
-  lastName: String!  
-  email: EmailAddress!   
+  firstName: String!
+  lastName: String!
+  email: EmailAddress!
   password: String!
   avatarURL: URL
-  company: String! 
+  company: String!
 }
 
 input UpdateUserInput {
-  firstName: String  
-  lastName: String  
-  email: EmailAddress   
+  firstName: String
+  lastName: String
+  email: EmailAddress
   password: String
   avatarURL: URL
-  company: String 
+  company: String
 }
 
 type Query {

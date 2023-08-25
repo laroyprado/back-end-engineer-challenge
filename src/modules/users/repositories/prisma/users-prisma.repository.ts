@@ -11,15 +11,34 @@ export class UsersPrismaRepository implements UsersRepository {
   constructor(private readonly prismaService: PrismaService) {}
 
   async create(data: CreateUserDto): Promise<User> {
-    throw new Error('Method not implemented.');
+    return await this.prismaService.user.create({
+      data: {
+        ...data,
+        company: {
+          connectOrCreate: {
+            where: { name: data.company },
+            create: { name: data.company },
+          },
+        },
+      },
+      select: {
+        id: true,
+        firstName: true,
+        lastName: true,
+        email: true,
+        avatarURL: true,
+        createdAt: true,
+        company: true,
+      },
+    });
   }
 
   async findAll(): Promise<User[]> {
-    throw new Error('Method not implemented.');
+    return await this.prismaService.user.findMany();
   }
 
   async findOne(id: UUID): Promise<User> {
-    throw new Error('Method not implemented.');
+    return await this.prismaService.user.findUnique({ where: { id } });
   }
 
   async update(id: UUID, updateUserInput: UpdateUserDto): Promise<User> {
