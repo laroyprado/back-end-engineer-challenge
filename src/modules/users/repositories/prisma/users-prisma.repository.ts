@@ -38,17 +38,10 @@ export class UsersPrismaRepository implements UsersRepository {
   }
 
   async findOne(id: UUID): Promise<User> {
-    // return await this.prismaService.user.findUnique({ where: { id } });
-
-    throw new Error('Method not implemented.');
+    return await this.prismaService.user.findUnique({ where: { id } });
   }
 
   async update(id: UUID, updateUserInput: UpdateUserDto): Promise<User> {
-    // return await this.prismaService.user.update({
-    //   where: { id },
-    //   data: updateUserInput,
-    // });
-
     throw new Error('Method not implemented.');
   }
 
