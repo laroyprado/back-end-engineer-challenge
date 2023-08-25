@@ -20,8 +20,8 @@ export class UsersService {
     return await this.userRepository.findOne(id);
   }
 
-  update(id: UUID, updateUserInput: UpdateUserDto) {
-    return `This action updates a #${id} user`;
+  async update(id: UUID, updateUserInput: UpdateUserDto) {
+    return await this.userRepository.update(id, updateUserInput);
   }
 
   remove(id: UUID) {

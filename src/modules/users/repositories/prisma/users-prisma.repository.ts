@@ -25,7 +25,10 @@ export class UsersPrismaRepository implements UsersRepository {
   }
 
   async update(id: UUID, updateUserInput: UpdateUserDto): Promise<User> {
-    throw new Error('Method not implemented.');
+    return await this.prismaService.user.update({
+      where: { id },
+      data: updateUserInput,
+    });
   }
 
   async remove(id: UUID): Promise<void> {
