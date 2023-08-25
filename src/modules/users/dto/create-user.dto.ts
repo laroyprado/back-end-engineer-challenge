@@ -39,6 +39,5 @@ export class CreateUserDto implements CreateUserInput {
 
   @IsString()
   @IsNotEmpty()
-  @MaxLength(127)
   company: string;
 }
