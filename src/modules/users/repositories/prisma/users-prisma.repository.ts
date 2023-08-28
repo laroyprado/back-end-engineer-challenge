@@ -41,8 +41,34 @@ export class UsersPrismaRepository implements UsersRepository {
     return await this.prismaService.user.findUnique({ where: { id } });
   }
 
-  async update(id: UUID, updateUserInput: UpdateUserDto): Promise<User> {
-    throw new Error('Method not implemented.');
+  async update(id: UUID, { company, ...data }: UpdateUserDto): Promise<User> {
+    if (company) {
+      return await this.prismaService.user.update({
+        where: { id },
+        data: {
+          ...data,
+          company: {
+            connectOrCreate: {
+              where: { name: company },
+              create: { name: company },
+            },
+          },
+        },
+        select: {
+          id: true,
+          firstName: true,
+          lastName: true,
+          email: true,
+          avatarURL: true,
+          createdAt: true,
+          company: true,
+        },
+      });
+    }
+    return await this.prismaService.user.update({
+      where: { id },
+      data,
+    });
   }
 
   async remove(id: UUID): Promise<void> {
