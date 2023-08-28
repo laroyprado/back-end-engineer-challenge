@@ -8,6 +8,7 @@ import {
   JWTResolver,
   UUIDResolver,
   URLResolver,
+  VoidResolver,
 } from 'graphql-scalars';
 import { join } from 'path';
 import { UsersModule } from './modules/users/users.module';
@@ -25,6 +26,7 @@ import { formatError } from './config/format.error';
         URL: URLResolver,
         UUID: UUIDResolver,
         JWT: JWTResolver,
+        Void: VoidResolver,
       },
       definitions: {
         path: join(process.cwd(), 'src/graphql.ts'),
@@ -35,6 +37,7 @@ import { formatError } from './config/format.error';
           URL: 'string',
           UUID: 'string',
           JWT: 'string',
+          Void: 'void',
         },
       },
       csrfPrevention: true,

@@ -3,6 +3,7 @@ scalar EmailAddress
 scalar UUID
 scalar URL
 scalar JWT
+scalar Void
 
 type User {
   id: UUID!   
@@ -47,5 +48,5 @@ type Query {
 type Mutation {
   createUser(createUserInput: CreateUserInput!): User!
   updateUser(id: UUID!, updateUserInput: UpdateUserInput!): User!
-  removeUser(id: UUID!): User
+  removeUser(id: UUID!): Void
 }

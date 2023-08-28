@@ -46,6 +46,6 @@ export class UsersPrismaRepository implements UsersRepository {
   }
 
   async remove(id: UUID): Promise<void> {
-    throw new Error('Method not implemented.');
+    await this.prismaService.user.delete({ where: { id } });
   }
 }

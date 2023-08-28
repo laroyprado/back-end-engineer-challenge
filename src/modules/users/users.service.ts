@@ -24,7 +24,7 @@ export class UsersService {
     return await this.userRepository.update(id, updateUserInput);
   }
 
-  remove(id: UUID) {
-    return `This action removes a #${id} user`;
+  async remove(id: UUID) {
+    await this.userRepository.remove(id);
   }
 }
