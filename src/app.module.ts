@@ -13,6 +13,8 @@ import {
 import { join } from 'path';
 import { UsersModule } from './modules/users/users.module';
 import { formatError } from './config/format.error';
+import { ApolloServerPluginLandingPageLocalDefault } from '@apollo/server/plugin/landingPage/default';
+import { ApolloServer } from '@apollo/server';
 
 @Module({
   imports: [
@@ -42,6 +44,8 @@ import { formatError } from './config/format.error';
       },
       csrfPrevention: true,
       formatError,
+      playground: false,
+      plugins: [ApolloServerPluginLandingPageLocalDefault()],
     }),
     UsersModule,
   ],

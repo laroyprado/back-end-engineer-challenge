@@ -34,11 +34,16 @@ export class UsersPrismaRepository implements UsersRepository {
   }
 
   async findAll(): Promise<User[]> {
-    return await this.prismaService.user.findMany();
+    return await this.prismaService.user.findMany({
+      include: { company: true },
+    });
   }
 
   async findOne(id: UUID): Promise<User> {
-    return await this.prismaService.user.findUnique({ where: { id } });
+    return await this.prismaService.user.findUnique({
+      where: { id },
+      include: { company: true },
+    });
   }
 
   async update(id: UUID, { company, ...data }: UpdateUserDto): Promise<User> {

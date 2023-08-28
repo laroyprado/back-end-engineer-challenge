@@ -49,4 +49,5 @@ type Mutation {
   createUser(createUserInput: CreateUserInput!): User!
   updateUser(id: UUID!, updateUserInput: UpdateUserInput!): User!
   removeUser(id: UUID!): Void
+
 }
