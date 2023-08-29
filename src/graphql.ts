@@ -39,7 +39,7 @@ export interface IMutation {
     loginUser(loginUserInput: LoginUserInput): LoginResponse | Promise<LoginResponse>;
     createUser(createUserInput: CreateUserInput): User | Promise<User>;
     updateUser(id: UUID, updateUserInput: UpdateUserInput): User | Promise<User>;
-    removeUser(id: UUID): Nullable<User> | Promise<Nullable<User>>;
+    removeUser(id: UUID): Nullable<Void> | Promise<Nullable<Void>>;
 }
 
 export interface User {
@@ -64,16 +64,10 @@ export interface IQuery {
     user(id: UUID): Nullable<User> | Promise<Nullable<User>>;
 }
 
-export interface IMutation {
-    createUser(createUserInput: CreateUserInput): User | Promise<User>;
-    updateUser(id: UUID, updateUserInput: UpdateUserInput): User | Promise<User>;
-    removeUser(id: UUID): Nullable<Void> | Promise<Nullable<Void>>;
-}
-
+export type JWT = string;
 export type DateTime = Date;
 export type EmailAddress = string;
 export type UUID = string;
 export type URL = string;
-export type JWT = string;
 export type Void = void;
 type Nullable<T> = T | null;
