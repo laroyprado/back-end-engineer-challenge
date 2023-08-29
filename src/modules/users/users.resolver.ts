@@ -34,7 +34,7 @@ export class UsersResolver {
   }
 
   @Mutation('removeUser')
-  remove(@Args('id') id: UUID) {
-    return this.usersService.remove(id);
+  softDelete(@Args('id') id: UUID) {
+    return this.usersService.softDelete(id);
   }
 }
