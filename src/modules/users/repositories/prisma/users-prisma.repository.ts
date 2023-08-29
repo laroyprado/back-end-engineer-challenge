@@ -61,7 +61,7 @@ export class UsersPrismaRepository implements UsersRepository {
     });
   }
 
-  async remove(id: UUID): Promise<void> {
+  async softDelete(id: UUID): Promise<void> {
     await this.prismaService.user.delete({ where: { id } });
   }
 }

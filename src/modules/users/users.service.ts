@@ -24,7 +24,7 @@ export class UsersService {
     return await this.userRepository.update(id, updateUserInput);
   }
 
-  async remove(id: UUID) {
-    await this.userRepository.remove(id);
+  async softDelete(id: UUID) {
+    await this.userRepository.softDelete(id);
   }
 }

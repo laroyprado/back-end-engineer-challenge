@@ -8,5 +8,5 @@ export abstract class UsersRepository {
   abstract findAll(): Promise<User[]>;
   abstract findOne(id: UUID): Promise<User>;
   abstract update(id: UUID, updateUserInput: UpdateUserDto): Promise<User>;
-  abstract remove(id: UUID): Promise<void>;
+  abstract softDelete(id: UUID): Promise<void>;
 }
