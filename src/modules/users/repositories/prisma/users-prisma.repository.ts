@@ -21,15 +21,7 @@ export class UsersPrismaRepository implements UsersRepository {
           },
         },
       },
-      select: {
-        id: true,
-        firstName: true,
-        lastName: true,
-        email: true,
-        avatarURL: true,
-        createdAt: true,
-        company: true,
-      },
+      include: { company: true },
     });
   }
 
@@ -59,20 +51,13 @@ export class UsersPrismaRepository implements UsersRepository {
             },
           },
         },
-        select: {
-          id: true,
-          firstName: true,
-          lastName: true,
-          email: true,
-          avatarURL: true,
-          createdAt: true,
-          company: true,
-        },
+        include: { company: true },
       });
     }
     return await this.prismaService.user.update({
       where: { id },
       data,
+      include: { company: true },
     });
   }
 
