@@ -21,7 +21,6 @@ export class UsersResolver {
 
   @Query('user')
   findOne(@Args('id') id: UUID): Promise<User> {
-    //Tirar duvida depois sobre qual user usar
     return this.usersService.findOne(id);
   }
 
