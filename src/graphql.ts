@@ -64,9 +64,16 @@ export interface IQuery {
     user(id: UUID): Nullable<User> | Promise<Nullable<User>>;
 }
 
-export type JWT = string;
+export interface IMutation {
+    createUser(createUserInput: CreateUserInput): User | Promise<User>;
+    updateUser(id: UUID, updateUserInput: UpdateUserInput): User | Promise<User>;
+    removeUser(id: UUID): Nullable<Void> | Promise<Nullable<Void>>;
+}
+
 export type DateTime = Date;
 export type EmailAddress = string;
 export type UUID = string;
 export type URL = string;
+export type JWT = string;
+export type Void = void;
 type Nullable<T> = T | null;

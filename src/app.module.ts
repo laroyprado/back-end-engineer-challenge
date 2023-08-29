@@ -8,10 +8,12 @@ import {
   JWTResolver,
   UUIDResolver,
   URLResolver,
+  VoidResolver,
 } from 'graphql-scalars';
 import { join } from 'path';
 import { UsersModule } from './modules/users/users.module';
 import { formatError } from './config/format.error';
+import { ApolloServerPluginLandingPageLocalDefault } from '@apollo/server/plugin/landingPage/default';
 import { AuthModule } from './modules/auth/auth.module';
 
 @Module({
@@ -26,6 +28,7 @@ import { AuthModule } from './modules/auth/auth.module';
         URL: URLResolver,
         UUID: UUIDResolver,
         JWT: JWTResolver,
+        Void: VoidResolver,
       },
       definitions: {
         path: join(process.cwd(), 'src/graphql.ts'),
@@ -36,10 +39,13 @@ import { AuthModule } from './modules/auth/auth.module';
           URL: 'string',
           UUID: 'string',
           JWT: 'string',
+          Void: 'void',
         },
       },
       csrfPrevention: true,
       formatError,
+      playground: false,
+      plugins: [ApolloServerPluginLandingPageLocalDefault()],
     }),
     UsersModule,
     AuthModule,
