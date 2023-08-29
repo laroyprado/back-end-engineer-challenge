@@ -8,6 +8,11 @@
 /* tslint:disable */
 /* eslint-disable */
 
+export interface LoginUserInput {
+    email: EmailAddress;
+    password: string;
+}
+
 export interface CreateUserInput {
     firstName: string;
     lastName: string;
@@ -24,6 +29,17 @@ export interface UpdateUserInput {
     password?: Nullable<string>;
     avatarURL?: Nullable<URL>;
     company?: Nullable<string>;
+}
+
+export interface LoginResponse {
+    token: JWT;
+}
+
+export interface IMutation {
+    loginUser(loginUserInput: LoginUserInput): LoginResponse | Promise<LoginResponse>;
+    createUser(createUserInput: CreateUserInput): User | Promise<User>;
+    updateUser(id: UUID, updateUserInput: UpdateUserInput): User | Promise<User>;
+    removeUser(id: UUID): Nullable<User> | Promise<Nullable<User>>;
 }
 
 export interface User {
