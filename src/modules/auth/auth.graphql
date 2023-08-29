@@ -1,0 +1,14 @@
+scalar JWT
+
+type LoginResponse {
+	token: JWT!
+}
+
+input LoginUserInput {
+  email: EmailAddress!   
+  password: String!
+}
+
+type Mutation {
+  loginUser(loginUserInput: LoginUserInput!): LoginResponse!
+}

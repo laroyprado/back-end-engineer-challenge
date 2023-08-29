@@ -14,7 +14,7 @@ import { join } from 'path';
 import { UsersModule } from './modules/users/users.module';
 import { formatError } from './config/format.error';
 import { ApolloServerPluginLandingPageLocalDefault } from '@apollo/server/plugin/landingPage/default';
-import { ApolloServer } from '@apollo/server';
+import { AuthModule } from './modules/auth/auth.module';
 
 @Module({
   imports: [
@@ -48,6 +48,7 @@ import { ApolloServer } from '@apollo/server';
       plugins: [ApolloServerPluginLandingPageLocalDefault()],
     }),
     UsersModule,
+    AuthModule,
   ],
 })
 export class AppModule {}

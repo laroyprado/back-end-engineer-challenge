@@ -1,7 +1,7 @@
 import { HttpStatus } from '@nestjs/common';
 
 export class AppError extends Error {
-  statusCode: number;
+  statusCode: HttpStatus;
 
   constructor(
     name: string,
