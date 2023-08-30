@@ -26,6 +26,10 @@ export class UsersService {
     return user;
   }
 
+  async findByEmail(email: string) {
+    return await this.userRepository.findByEmail(email);
+  }
+
   async update(id: UUID, updateUserInput: UpdateUserDto) {
     return await this.userRepository.update(id, updateUserInput);
   }
