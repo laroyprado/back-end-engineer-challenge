@@ -6,11 +6,13 @@ import { UUID } from 'node:crypto';
 import { User } from 'src/graphql';
 import { ValidateUserIdGuard } from './guards/validate-id.guard';
 import { UseGuards } from '@nestjs/common';
+import { VerifyEmailDuplicityGuard } from './guards/verify-email.guard';
 
 @Resolver('User')
 export class UsersResolver {
   constructor(private readonly usersService: UsersService) {}
 
+  @UseGuards(VerifyEmailDuplicityGuard)
   @Mutation('createUser')
   create(@Args('createUserInput') createUserInput: CreateUserDto) {
     return this.usersService.create(createUserInput);
@@ -26,7 +28,7 @@ export class UsersResolver {
     return this.usersService.findOne(id);
   }
 
-  @UseGuards(ValidateUserIdGuard)
+  @UseGuards(ValidateUserIdGuard, VerifyEmailDuplicityGuard)
   @Mutation('updateUser')
   update(
     @Args('id') id: UUID,
