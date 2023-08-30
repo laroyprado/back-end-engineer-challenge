@@ -4,6 +4,8 @@ import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
 import { UUID } from 'node:crypto';
 import { User } from 'src/graphql';
+import { ValidateUserIdGuard } from './guards/validate-id.guard';
+import { UseGuards } from '@nestjs/common';
 
 @Resolver('User')
 export class UsersResolver {
@@ -24,6 +26,7 @@ export class UsersResolver {
     return this.usersService.findOne(id);
   }
 
+  @UseGuards(ValidateUserIdGuard)
   @Mutation('updateUser')
   update(
     @Args('id') id: UUID,
@@ -32,6 +35,7 @@ export class UsersResolver {
     return this.usersService.update(id, updateUserInput);
   }
 
+  @UseGuards(ValidateUserIdGuard)
   @Mutation('removeUser')
   softDelete(@Args('id') id: UUID) {
     return this.usersService.softDelete(id);
