@@ -7,6 +7,8 @@ import { User } from 'src/graphql';
 import { ValidateUserIdGuard } from './guards/validate-id.guard';
 import { UseGuards } from '@nestjs/common';
 import { VerifyEmailDuplicityGuard } from './guards/verify-email.guard';
+import { JwtAuthGuard } from '../auth/guards/jwt-auth.guard';
+import { VerifyUserPermissionGuard } from './guards/verify-permission.guard';
 
 @Resolver('User')
 export class UsersResolver {
@@ -23,12 +25,18 @@ export class UsersResolver {
     return this.usersService.findAll();
   }
 
+  @UseGuards(JwtAuthGuard, VerifyUserPermissionGuard)
   @Query('user')
   findOne(@Args('id') id: UUID): Promise<User> {
     return this.usersService.findOne(id);
   }
 
-  @UseGuards(ValidateUserIdGuard, VerifyEmailDuplicityGuard)
+  @UseGuards(
+    JwtAuthGuard,
+    VerifyUserPermissionGuard,
+    ValidateUserIdGuard,
+    VerifyEmailDuplicityGuard,
+  )
   @Mutation('updateUser')
   update(
     @Args('id') id: UUID,
@@ -37,7 +45,7 @@ export class UsersResolver {
     return this.usersService.update(id, updateUserInput);
   }
 
-  @UseGuards(ValidateUserIdGuard)
+  @UseGuards(JwtAuthGuard, VerifyUserPermissionGuard, ValidateUserIdGuard)
   @Mutation('removeUser')
   softDelete(@Args('id') id: UUID) {
     return this.usersService.softDelete(id);
