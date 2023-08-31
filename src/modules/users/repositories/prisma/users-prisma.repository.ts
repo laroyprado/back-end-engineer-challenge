@@ -38,6 +38,10 @@ export class UsersPrismaRepository implements UsersRepository {
     });
   }
 
+  async findByEmail(email: string): Promise<User> {
+    return await this.prismaService.user.findUnique({ where: { email } });
+  }
+
   async update(id: UUID, { company, ...data }: UpdateUserDto): Promise<User> {
     if (company) {
       return await this.prismaService.user.update({
