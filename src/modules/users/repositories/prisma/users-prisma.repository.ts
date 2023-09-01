@@ -1,4 +1,4 @@
-import { User } from 'src/graphql';
+import { User, UserToValidate } from 'src/graphql';
 import { CreateUserDto } from '../../dto/create-user.dto';
 import { UpdateUserDto } from '../../dto/update-user.dto';
 import { UsersRepository } from '../users.repository';
@@ -38,7 +38,7 @@ export class UsersPrismaRepository implements UsersRepository {
     });
   }
 
-  async findByEmail(email: string): Promise<User> {
+  async findByEmail(email: string): Promise<UserToValidate> {
     return await this.prismaService.user.findUnique({ where: { email } });
   }
 

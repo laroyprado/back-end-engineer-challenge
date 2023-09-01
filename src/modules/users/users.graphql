@@ -16,6 +16,18 @@ type User {
   createdAt: DateTime!
 }
 
+type UserToValidate {
+  id: UUID!   
+  firstName: String!
+  lastName: String!
+  fullName: String
+  email: EmailAddress!
+  password: String!
+  avatarURL: URL
+  company: Company
+  createdAt: DateTime!
+}
+
 type Company {
 	id: UUID!
 	name: String!

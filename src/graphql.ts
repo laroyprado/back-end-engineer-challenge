@@ -53,6 +53,18 @@ export interface User {
     createdAt: DateTime;
 }
 
+export interface UserToValidate {
+    id: UUID;
+    firstName: string;
+    lastName: string;
+    fullName?: Nullable<string>;
+    email: EmailAddress;
+    password: string;
+    avatarURL?: Nullable<URL>;
+    company?: Nullable<Company>;
+    createdAt: DateTime;
+}
+
 export interface Company {
     id: UUID;
     name: string;
